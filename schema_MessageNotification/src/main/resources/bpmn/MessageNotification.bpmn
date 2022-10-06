@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_15dpoj0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <bpmn:collaboration id="MessageNotification-1">
+    <bpmn:participant id="Participant_08r2nm4" processRef="messageNotification" />
+    <bpmn:participant id="Participant_1nkvt9w" name="Система уведомлений" />
+    <bpmn:participant id="Participant_0yp0q5o" name="Пользователь" />
+    <bpmn:messageFlow id="Flow_1w7yfb1" sourceRef="Participant_1nkvt9w" targetRef="StartEvent_1" />
+    <bpmn:messageFlow id="Flow_1n9yimp" sourceRef="service-task_01" targetRef="Participant_0yp0q5o" />
+  </bpmn:collaboration>
+  <bpmn:process id="messageNotification" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="&#34;Вам пришло сообщение, нажмите, чтобы открыть&#34;">
+      <bpmn:outgoing>Flow_0or6mok</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_02yywn3" messageRef="Message_1vjrrqh" />
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="service-task_01" name="Отобразить сообщение" camunda:class="model.ShowMessage">
+      <bpmn:documentation>Отобразить сообщение, если пароль введен правильно и не превышен лимит 3 попыток на ввод</bpmn:documentation>
+      <bpmn:incoming>Flow_1xob0ut</bpmn:incoming>
+      <bpmn:outgoing>Flow_1npxepn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0xlr9ty" name="Сообщение показано">
+      <bpmn:incoming>Flow_1npxepn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1npxepn" sourceRef="service-task_01" targetRef="Event_0xlr9ty" />
+    <bpmn:userTask id="user-task_01" name="Ввести пароль от телефона" camunda:assignee="demo">
+      <bpmn:documentation>Человек вводит пароль. Лимит - 3 попытки</bpmn:documentation>
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0or6mok</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xob0ut</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1xob0ut" sourceRef="user-task_01" targetRef="service-task_01" />
+    <bpmn:sequenceFlow id="Flow_0or6mok" sourceRef="StartEvent_1" targetRef="user-task_01" />
+    <bpmn:boundaryEvent id="Event_0hv4pff" attachedToRef="user-task_01">
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1js8yzs" />
+    </bpmn:boundaryEvent>
+    <bpmn:textAnnotation id="TextAnnotation_0fgt9kt">
+      <bpmn:text>POST-запрос с сообщением активизирует процесс</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_079mim8">
+      <bpmn:text>3 попытки ввода
+как хранить пароль?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1luexup">
+      <bpmn:text>как это описывать?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_11b9i3f" sourceRef="StartEvent_1" targetRef="TextAnnotation_0fgt9kt" />
+    <bpmn:association id="Association_1inwahq" sourceRef="user-task_01" targetRef="TextAnnotation_079mim8" />
+    <bpmn:association id="Association_1rpt8zr" sourceRef="Event_0hv4pff" targetRef="TextAnnotation_1luexup" />
+    <bpmn:textAnnotation id="TextAnnotation_0diy2ih">
+      <bpmn:text>отобразить через контроллер? но тогда нужно, чтобы что-то автоматически дергало его</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0gcfudi" sourceRef="service-task_01" targetRef="TextAnnotation_0diy2ih" />
+  </bpmn:process>
+  <bpmn:message id="Message_1vjrrqh" name="startMessage" />
+  <bpmn:error id="Error_1pujmny" name="block-error" errorCode="block-error" camunda:errorMessage="to many incorrect tries, phone has blocked" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="MessageNotification-1">
+      <bpmndi:BPMNShape id="Participant_08r2nm4_di" bpmnElement="Participant_08r2nm4" isHorizontal="true">
+        <dc:Bounds x="160" y="180" width="750" height="340" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1s8mjyv_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="232" y="322" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="210" y="365" width="82" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wydluq_di" bpmnElement="service-task_01">
+        <dc:Bounds x="640" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0xlr9ty_di" bpmnElement="Event_0xlr9ty">
+        <dc:Bounds x="832" y="322" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="820" y="366" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bvxzfv_di" bpmnElement="user-task_01">
+        <dc:Bounds x="400" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0fgt9kt_di" bpmnElement="TextAnnotation_0fgt9kt">
+        <dc:Bounds x="300" y="230" width="100" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_079mim8_di" bpmnElement="TextAnnotation_079mim8">
+        <dc:Bounds x="500" y="410" width="100" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1luexup_di" bpmnElement="TextAnnotation_1luexup">
+        <dc:Bounds x="500" y="200" width="100" height="41" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0diy2ih_di" bpmnElement="TextAnnotation_0diy2ih">
+        <dc:Bounds x="760" y="190" width="100" height="127" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0sgv06j_di" bpmnElement="Event_0hv4pff">
+        <dc:Bounds x="462" y="282" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1npxepn_di" bpmnElement="Flow_1npxepn">
+        <di:waypoint x="740" y="340" />
+        <di:waypoint x="830" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xob0ut_di" bpmnElement="Flow_1xob0ut">
+        <di:waypoint x="500" y="340" />
+        <di:waypoint x="640" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0or6mok_di" bpmnElement="Flow_0or6mok">
+        <di:waypoint x="268" y="340" />
+        <di:waypoint x="400" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_11b9i3f_di" bpmnElement="Association_11b9i3f">
+        <di:waypoint x="263" y="328" />
+        <di:waypoint x="300" y="293" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1inwahq_di" bpmnElement="Association_1inwahq">
+        <di:waypoint x="495" y="378" />
+        <di:waypoint x="532" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1rpt8zr_di" bpmnElement="Association_1rpt8zr">
+        <di:waypoint x="491" y="286" />
+        <di:waypoint x="529" y="241" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0gcfudi_di" bpmnElement="Association_0gcfudi">
+        <di:waypoint x="726" y="300" />
+        <di:waypoint x="760" y="261" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1vp1mqc_di" bpmnElement="Participant_1nkvt9w" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="300" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1q7mk69_di" bpmnElement="Participant_0yp0q5o" isHorizontal="true">
+        <dc:Bounds x="610" y="80" width="300" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1w7yfb1_di" bpmnElement="Flow_1w7yfb1">
+        <di:waypoint x="250" y="140" />
+        <di:waypoint x="250" y="322" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n9yimp_di" bpmnElement="Flow_1n9yimp">
+        <di:waypoint x="690" y="300" />
+        <di:waypoint x="690" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
