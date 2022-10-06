@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd7b3cb2-5575-4ae8-bc34-9d12ee958c4b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CamundaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/model/CamundaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/model/Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ShowMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/basic/model/ShowMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Application.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ShowMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/bpmn/MessageNotification.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bpmn/MessageNotification.bpmn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/component/Service.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MessageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/CamundaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
