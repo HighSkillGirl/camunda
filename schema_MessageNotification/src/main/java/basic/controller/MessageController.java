@@ -1,11 +1,11 @@
-package controller;
+package basic.controller;
 
-import model.Info;
+import basic.model.Info;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-import model.CamundaService;
+import basic.model.CamundaService;
 
 import java.util.logging.Logger;
 

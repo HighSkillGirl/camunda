@@ -1,4 +1,4 @@
-package model;
+package basic.model;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.runtime.ProcessInstance;

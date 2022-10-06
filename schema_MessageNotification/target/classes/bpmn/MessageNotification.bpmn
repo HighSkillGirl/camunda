@@ -12,7 +12,7 @@
       <bpmn:outgoing>Flow_0or6mok</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_02yywn3" messageRef="Message_1vjrrqh" />
     </bpmn:startEvent>
-    <bpmn:serviceTask id="service-task_01" name="Отобразить сообщение" camunda:class="service.ShowMessage">
+    <bpmn:serviceTask id="service-task_01" name="Отобразить сообщение" camunda:class="model.ShowMessage">
       <bpmn:documentation>Отобразить сообщение, если пароль введен правильно и не превышен лимит 3 попыток на ввод</bpmn:documentation>
       <bpmn:incoming>Flow_1xob0ut</bpmn:incoming>
       <bpmn:outgoing>Flow_1npxepn</bpmn:outgoing>

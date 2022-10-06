@@ -1,6 +1,6 @@
-package model;
+package basic.model;
 
-import controller.MessageController;
+import basic.controller.MessageController;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
